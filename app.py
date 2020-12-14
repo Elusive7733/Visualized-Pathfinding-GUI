@@ -81,3 +81,15 @@ class node:
     #lesser than funtion
     def __lt__(self, other):
         return False
+    
+    def heuristic_func(cordinate_1, cordinate_2):
+        #manhattan distance (moving in straight lines)
+        x1 = p1
+        y1 = p1
+        x2 = p2
+        y2 = p2
+        return abs(x1 - x2) + abs(y1 - y2)
+    
+    def create_grid(rows, width):
+        grid = []
+        gap = width // rows #integer division
