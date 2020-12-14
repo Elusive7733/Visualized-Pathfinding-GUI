@@ -74,3 +74,10 @@ class node:
 
     def draw(self, Win):
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.width))
+    
+    def update_neighbours(sel, grid):
+        pass
+
+    #lesser than funtion
+    def __lt__(self, other):
+        return False
