@@ -3,6 +3,12 @@ from Node import Node
 from global_var import Win, WIDTH
 from colors import *
 from a_star import a_star, heuristic_func
+from tkinter import *
+from tkinter import messagebox
+
+
+Tk().wm_withdraw() #to hide the main window
+
 
 def create_grid(rows, width):
     grid = []
@@ -24,7 +30,7 @@ def draw_gridlines(win, rows, width):
 
 def draw(win, grid, rows, width):
     win.fill(white)
-    
+
     for row in grid:
         for node in row:
             node.draw(win)
@@ -42,10 +48,10 @@ def mouse_clicked_position(position, rows, width):
 
     return row, col
 
-
 def main(win, width):
     rows = 40
-    #last try to create a dynamic grid
+
+    #last: try to create a dynamic grid
     grid = create_grid(rows, width)
 
     start_position = None
@@ -95,12 +101,13 @@ def main(win, width):
                     end_position = None
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE and start_position and end_position:
+                if event.key == pygame.K_a and start_position and end_position:
                     for row in grid:
                         for node in row:
                             node.update_neighbours(grid)       
-                    #if button 1 selected:
-                    a_star(lambda: draw(win, grid, rows, width), grid, start_position, end_position) #lambda is an anonymous funtion
+                    
+                    
+                    solution = a_star(lambda: draw(win, grid, rows, width), grid, start_position, end_position) #lambda is an anonymous funtion
                     #-----------------------------------------
                     # x = def func():
                     #        print("hello")
@@ -108,15 +115,21 @@ def main(win, width):
                     #-----------------------------------------
                     # this can be summarized using lambda:
                     # x = lambda: print("hello")
-
-
+                    
                     #if button 2 selected:
                         #bfs
                     # if button 3 selected:
                         #diasktra
                     # if button 4 selected:
                         #greedy
-    pygame.quit()
+    
+                    if solution == False:
+                        messagebox.showinfo(title='Path Doesnt Exist', message="No Path Found")
 
+                if not start_position and (event.key == pygame.K_a or event.key == pygame.K_b or event.key == pygame.K_d or event.key == pygame.K_g):
+                        messagebox.showerror(title='Start-Position-404', message='Start Position not selected')
+                if not end_position and (event.key == pygame.K_a or event.key == pygame.K_b or event.key == pygame.K_d or event.key == pygame.K_g):
+                        messagebox.showerror(title='End-Position-404', message='End Position not selected')
+    pygame.quit()
 
 main(Win, WIDTH)
