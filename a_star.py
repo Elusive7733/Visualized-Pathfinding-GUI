@@ -1,6 +1,7 @@
 import pygame
 from queue import PriorityQueue
 import math
+import winsound
 
 def heuristic_func(cordinate_1, cordinate_2):
     #manhattan distance (moving in straight lines)
@@ -30,7 +31,7 @@ def a_star(draw, grid, start, end):
         open_set_hash.remove(current)
 
         if current == end:
-            reconstruct_path(came_from, end, draw)
+            reconstruct_path(came_from, draw, end, end)
             end.create_end_node()
             return True
             
@@ -55,8 +56,13 @@ def a_star(draw, grid, start, end):
     return False
 
 #circular import error if I put this in main becaused it is being called here
-def reconstruct_path(came_from, current, draw):
+def reconstruct_path(came_from, draw, current, end):
     while current in came_from:
+        frequency = 1000
+        duration = 100
+        frequency += int(30*heuristic_func(current.get_position(), end.get_position()))
+        duration -= int(0.15*heuristic_func(current.get_position(), end.get_position()))
+        winsound.Beep(frequency, duration)
         current = came_from[current]
         current.create_path()
         draw()

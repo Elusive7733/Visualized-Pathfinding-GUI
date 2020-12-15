@@ -5,9 +5,10 @@ from colors import *
 from a_star import a_star, heuristic_func
 from tkinter import *
 from tkinter import messagebox
-from breadth_first_search import bfs
+
 
 Tk().wm_withdraw() #to hide the main window
+
 def create_grid(rows, width):
     grid = []
     gap = width // rows #integer division
@@ -99,7 +100,7 @@ def main(win, width):
                     end_position = None
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_a and start_position and end_position:
+                if event.key == pygame.K_SPACE and start_position and end_position:
                     for row in grid:
                         for node in row:
                             node.update_neighbours(grid)       
@@ -117,9 +118,9 @@ def main(win, width):
                     if solution == False:
                         messagebox.showinfo(title='Path Doesnt Exist', message="No Path Found")
 
-                if not start_position and (event.key == pygame.K_a or event.key == pygame.K_b or event.key == pygame.K_d or event.key == pygame.K_g):
+                if not start_position and event.key == pygame.K_SPACE:
                         messagebox.showerror(title='Start-Position-404', message='Start Position not selected')
-                if not end_position and (event.key == pygame.K_a or event.key == pygame.K_b or event.key == pygame.K_d or event.key == pygame.K_g):
+                if not end_position and event.key == pygame.K_SPACE:
                         messagebox.showerror(title='End-Position-404', message='End Position not selected')
     pygame.quit()
 
