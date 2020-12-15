@@ -109,7 +109,7 @@ def algorithm(draw, grid, start, end):
 	g_score = {spot: float("inf") for row in grid for spot in row}
 	g_score[start] = 0
 	f_score = {spot: float("inf") for row in grid for spot in row}
-	f_score[start] = h(start.get_pos(), end.get_pos())
+	f_score[start] = h(start.get_position(), end.get_position())
 
 	open_set_hash = {start}
 
@@ -132,7 +132,7 @@ def algorithm(draw, grid, start, end):
 			if temp_g_score < g_score[neighbor]:
 				came_from[neighbor] = current
 				g_score[neighbor] = temp_g_score
-				f_score[neighbor] = temp_g_score + h(neighbor.get_pos(), end.get_pos())
+				f_score[neighbor] = temp_g_score + h(neighbor.get_position(), end.get_position())
 				if neighbor not in open_set_hash:
 					count += 1
 					open_set.put((f_score[neighbor], count, neighbor))

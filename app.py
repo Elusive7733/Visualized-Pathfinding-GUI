@@ -1,18 +1,9 @@
 import pygame
-import math
-from queue import PriorityQueue
+# import math
 from Node import Node
 from global_var import Win, WIDTH
-from colors import * 
-
-def heuristic_func(cordinate_1, cordinate_2):
-    #manhattan distance (moving in straight lines)
-    x1 = p1
-    y1 = p1
-    x2 = p2
-    y2 = p2
-    #adding the difference between the x and y cordinates of the grid
-    return abs(x1 - x2) + abs(y1 - y2)
+from colors import *
+from a_star import a_star, heuristic_func
 
 def create_grid(rows, width):
     grid = []
@@ -53,7 +44,8 @@ def mouse_clicked_position(position, rows, width):
     return row, col
 
 def main(win, width):
-    rows = 80
+    rows = 40
+    #last try to create a dynamic grid
     grid = create_grid(rows, width)
 
     start_position = None
@@ -67,6 +59,15 @@ def main(win, width):
             if event.type == pygame.QUIT:
                 run = False
             
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    grid = []
+                    start_position = None
+                    end_position = None 
+                    Started = False
+                    grid = create_grid(rows, width)
+                    draw(win, grid, rows, width)
+
             if Started:
                 continue
             
@@ -92,7 +93,29 @@ def main(win, width):
                     start_position = None
                 if node == end_position:
                     end_position = None
-    
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE and not Started:
+                    for row in grid:
+                        for node in row:
+                            node.update_neighbours(grid)       
+                    #if button 1 selected:
+                    a_star(lambda: draw(win, grid, rows, width), grid, start_position, end_position) #lambda is an anonymous funtion
+                    #-----------------------------------------
+                    # x = def func():
+                    #        print("hello")
+                    # x()
+                    #-----------------------------------------
+                    # this can be summarized using lambda:
+                    # x = lambda: print("hello")
+
+
+                    #if button 2 selected:
+                        #bfs
+                    # if button 3 selected:
+                        #diasktra
+                    # if button 4 selected:
+                        #greedy
     pygame.quit()
 
 

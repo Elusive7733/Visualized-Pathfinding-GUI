@@ -1,6 +1,7 @@
 import pygame
 import math
 from colors import *
+from a_star import heuristic_func
 
 class Node:
     def __init__(self, row, col, width, total_rows):
@@ -8,7 +9,7 @@ class Node:
         self.col = col
         self.x = row * width
         self.y = col * width
-        self.color = white
+        self.color = (255, 255, 255)
         self.neighbours = []
         self.width = width
         self.total_rows = total_rows
@@ -34,8 +35,9 @@ class Node:
         return self.color == gold
 
     #Assigning color for out nodes
-    def create_visited(self):
-        self.color = aqua
+    def create_visited(self, end):
+        h_score = heuristic_func(self.get_position(), end.get_position())
+        self.color = (0, 255 - h_score*2, 230 - h_score*2)
     
     def reset(self):
         self.color = white
@@ -47,7 +49,7 @@ class Node:
         self.color = black
 
     def create_start_node(self):
-        self.color = orange
+        self.color = chocolate
 
     def create_end_node(self):
         self.color = gold
@@ -58,7 +60,7 @@ class Node:
     def draw(self, win):
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.width))
     
-    def update_neighbours(sel, grid):
+    def update_neighbours(self, grid):
         self.neighbours = []
         if self.row < (self.total_rows - 1): #checking if down < total number of rows
             if not grid[self.row + 1][self.col].check_barrier(): #checking if the "down" node is not a barrier
