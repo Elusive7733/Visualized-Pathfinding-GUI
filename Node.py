@@ -18,19 +18,19 @@ class Node:
     def get_position(self):
 	    return self.row, self.col
 
-    def visited(self):
+    def check_visited(self):
         return self.color == aqua
     
     def to_visit(self):
         return self.color == spring_green
 
-    def barrier(self):
+    def check_barrier(self):
         return self.color == black
 
-    def start_node(self):
+    def check_start_node(self):
         return self.color == orange
 
-    def end_node(self):
+    def check_end_node(self):
         return self.color == gold
 
     #Assigning color for out nodes
@@ -59,7 +59,22 @@ class Node:
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.width))
     
     def update_neighbours(sel, grid):
-        pass
+        self.neighbours = []
+        if self.row < (self.total_rows - 1): #checking if down < total number of rows
+            if not grid[self.row + 1][self.col].check_barrier(): #checking if the "down" node is not a barrier
+                self.neighbours.append(grid[self.row + 1][self.col])
+
+        if self.row > 0: #checking if up exists (not at the top (row = 0))
+            if not grid[self.row - 1][self.col].check_barrier(): #checking if the "up" node is not a barrier
+                self.neighbours.append(grid[self.row - 1][self.col])
+
+        if self.col < (self.total_rows - 1): #checking if left < total number of columns (used total_rows here because it's a square)
+            if not grid[self.row][self.col + 1].check_barrier(): #checking if the "left" node is not a barrier
+                self.neighbours.append(grid[self.row][self.col + 1])
+
+        if self.col > 0: #checking if right exists (not at the right_most (column = 0))
+            if not grid[self.row][self.col - 1].check_barrier(): #checking if the "right" node is not a barrier
+                self.neighbours.append(grid[self.row][self.col - 1])
 
     #lesser than funtion
     def __lt__(self, other):
