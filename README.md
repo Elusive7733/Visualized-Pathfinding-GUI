@@ -1,5 +1,5 @@
-# Visualized-Pathfinding-GUI
-Path-Finding with visual representation and Graphical-User-Interface used to find the shortest path between two points using the A* Algorithm 
+# Visualized-Pathfinding-GUI Using A* Alogrithm
+Path-Finding with visual representation and Graphical-User-Interface used to find the shortest path between two points using the A* Algorithm and Heuristics
 
 Run: 𝐩𝐲𝐭𝐡𝐨𝐧 𝐚𝐩𝐩.𝐩𝐲  
 _________________________________________________________________________________________________________________________________________________
