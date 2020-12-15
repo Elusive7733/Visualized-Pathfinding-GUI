@@ -1,5 +1,4 @@
 import pygame
-# import math
 from Node import Node
 from global_var import Win, WIDTH
 from colors import *
@@ -42,6 +41,7 @@ def mouse_clicked_position(position, rows, width):
     row = y // gap
 
     return row, col
+
 
 def main(win, width):
     rows = 40
@@ -95,7 +95,7 @@ def main(win, width):
                     end_position = None
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE and not Started:
+                if event.key == pygame.K_SPACE and start_position and end_position:
                     for row in grid:
                         for node in row:
                             node.update_neighbours(grid)       

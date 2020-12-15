@@ -31,7 +31,7 @@ def a_star(draw, grid, start, end):
 
         if current == end:
             reconstruct_path(came_from, end, draw)
-            end.make_end()
+            end.create_end_node()
             return True
             
         for neighbour in current.neighbours:
@@ -53,3 +53,9 @@ def a_star(draw, grid, start, end):
             current.create_visited(end)
 
     return False
+
+def reconstruct_path(came_from, current, draw):
+    while current in came_from:
+        current = came_from[current]
+        current.create_path()
+        draw()
