@@ -17,6 +17,9 @@ Far Node: ![](Images/far_node.PNG) #node that is far from the end node (High Heu
 
 Close Node: ![](Images/close_node.PNG) #node that is close from the end node (Low Heuristic Value)  
 
+_________________________________________________________________________________________________________________________________________________
+𝐈𝐧𝐩𝐮𝐭:  
+
 Space_Bar: 𝐒𝐭𝐚𝐫𝐭  
 
 Escape: 𝐑𝐞𝐬𝐞𝐭
