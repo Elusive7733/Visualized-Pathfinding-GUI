@@ -54,7 +54,7 @@ def a_star(draw, grid, start, end):
 
     return False
 
-#circular import error if I put this in main becaused it is beingg called here
+#circular import error if I put this in main becaused it is being called here
 def reconstruct_path(came_from, current, draw):
     while current in came_from:
         current = came_from[current]

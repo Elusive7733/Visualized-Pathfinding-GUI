@@ -5,11 +5,9 @@ from colors import *
 from a_star import a_star, heuristic_func
 from tkinter import *
 from tkinter import messagebox
-
+from breadth_first_search import bfs
 
 Tk().wm_withdraw() #to hide the main window
-
-
 def create_grid(rows, width):
     grid = []
     gap = width // rows #integer division
@@ -115,13 +113,6 @@ def main(win, width):
                     #-----------------------------------------
                     # this can be summarized using lambda:
                     # x = lambda: print("hello")
-                    
-                    #if button 2 selected:
-                        #bfs
-                    # if button 3 selected:
-                        #diasktra
-                    # if button 4 selected:
-                        #greedy
     
                     if solution == False:
                         messagebox.showinfo(title='Path Doesnt Exist', message="No Path Found")
