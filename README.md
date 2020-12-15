@@ -53,7 +53,7 @@ Result:
 
 _________________________________________________________________________________________________________________________________________________
 𝐒𝐨𝐮𝐫𝐜𝐞𝐬:
-https://en.wikipedia.org/wiki/A*_search_algorithm
-https://www.redblobgames.com/pathfinding/a-star/introduction.html
-http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html
-https://www.geeksforgeeks.org/a-search-algorithm/
+https://en.wikipedia.org/wiki/A*_search_algorithm  
+https://www.redblobgames.com/pathfinding/a-star/introduction.html  
+http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html  
+https://www.geeksforgeeks.org/a-search-algorithm/  
